@@ -7,6 +7,10 @@ import com.rabbitmq.client.DeliverCallback;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * 测试消息轮询发送  分别发送4条消息 一定是 worker01 消息1 work02 消息2
+ * worker01 消息3 work02 消息4
+ */
 public class Worker01 {
     private static final String QUEUE_NAME="hello";
 
