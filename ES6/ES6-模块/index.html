@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Es6引入了模块化，设计思想是在编译时就确定模块的依赖关系，以及输入和输出的变量</h2>
+    <span>ES6的模块分为导出(export)和@与导入(import)两个模块</span>
+    <p>模块中可以导入和导出各种类型的变量，如函数，对象，字符串，数字，布尔值，类等</p>
+    <p>特点：每个模块只能加载一次，是单例的，若再去加载同目录下的文件，则直接从内存中取</p>
+    
+</body>
+</html>
+<script>
+    /*-------------export [test.js]*/
+    let myName="Tom";
+    let myAge=20;
+    let myFn=function(){
+        return "myname"+myName+"i ma"+myAge
+    }
+    let myClass=class myClass{
+        static a="year";
+    }
+    //大括号 指定所有输出的一组变量写在文档尾部，明确导出的接口，函数与类需要有对应的名称，导出文档尾部页避免了无对应名称
+    export{myAge,myName,myClass,myFn}
+
+/*-----------------import [xxxx.js]------------*/
+
+import{myAge,myClass,myFn,myName} from "/.test1.js";
+import{myName as name1} from "./test2.js";
+console.log(name1)
+//不同模块导出的接口名称重复，则用as 重新定义变量名
+//export 导出的接口名称，必须和模块内的变量有一一对应的关系，导入的变量名，和导出的变量名接口名称相同，顺序可以不一致
+
+//import 命令的特点
+  //只读属性：不允许在加载模块的脚本里面，改写接口的引用指向，可以改写import 变量类型为对象的属性值，不能改写import变量类型为基本类型的值
+
+  import{a} from "./test.js"
+  a={};//出错
+
+  import {b} from "/test2.js"
+  b.foot="hello";// a={foot:"hello"}
+
+  //单例模式：多次重复执行同一import 语句，只会执行一次，不会多次执行，import 同一模块，声明不同接口引用，会声明对应变量，但只执行一次import
+
+  import {a} from "./test.js";
+  import {a} from"./test.js";
+  //相当于 import {a} from "./test.js"
+  import {c} from "./test3.js";
+  import{d} from "./test3.js";
+  //相当于 import{c,d} from "./test3.js"
+
+
+  //静态执行特性：import是静态执行，所以不能使用表达式和变量
+  import {"f"+"oo"} from "methods";//表达式 出错
+  //error
+
+  let module="methods"
+  import{foot} from module  //变量出错
+
+  if(true){
+      import {foot} from "method1";
+  }else{
+      import {foot} from "method2";
+  }
+  //error
+  //export default 命令
+   //export、import 可以有多个，export default 仅有一个
+   // export default 中default 是对应的导出接口变量
+   //通过 export 方式导出，在导入是 要加{},export default  则不用加
+   // export defalut 向外 暴露的成员，可以使用任意变量来接受
+
+   var  a ="myName is Tom！";
+   export default a;//只有一个
+   export default var c="error"; // error ,default 已经是对应的导出变量，不能跟着变量声明语句
+   import b  from "./test.js";//不需要加{},使用任意变量接受
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

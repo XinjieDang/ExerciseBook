@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Arrar.of</h3>
+    
+</body>
+</html>
+<script>
+    //1、数组创建 Arrar.of()
+    // 将参数中所有值 作为元素 形成数组
+    console.log(Array.of(1,2,3,4));//[1,2,3,4]
+    //参数值可为不同的类型
+    console.log(Array.of(1,'2',true));[1,'2',true]
+    //参数为空时 返回空数组
+    console.log(Array.of());
+    //2、将类数组对象 或可迭代对象转换为数组
+    console.log(Array.from([1,2]));//参数为数组，返回和原始数组一样的数组
+    console.log(Array.from([1,,3]));//[1,undefined,3]
+
+    //3、扩展的方法 查找 find 
+    //查找数组中 符合条件的元素，若有多个符合条件的元素，则返回第一个元素
+    let arr=Array.of(1,1,2,1,3,4);
+    console.log(arr.find(item=>item>2));
+    //数组空位处理 为undefined
+    console.log([,1].find(n=>true));//undefined
+
+
+
+
+</script>

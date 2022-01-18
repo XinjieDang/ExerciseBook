@@ -1,0 +1,24 @@
+{
+    /*
+    tsconfig.json是ts编译器的配置文件，ts编译器可以根据它的信息来对代码进行编译
+    "include"指定哪些ts文件需要被编译
+        路径：** 任意目录
+             * 任意文件
+    "exclude": 不需要被编译的文件
+    
+    */
+    // "include": [
+    //     "./src/**/*"
+    // ],
+    "exclude": [
+        "/src/hello/**/*"
+    ],
+    /*
+    编译器选项
+    */
+    "compilerOptions": {
+        //指定es编译版本
+        "target": "ES6"
+
+    }
+}

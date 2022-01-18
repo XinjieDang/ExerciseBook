@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+//Es6 1、允许对象的属性直接写变量，属性名是变量名，属性值是变量值
+const age=12;
+const name="Amy";
+const person={age,name};
+person  //{age:12,name:"Amy"}
+//等同于
+const person={age:age,name:name}
+
+//方法名也可以简写
+const person={
+    sayHi(){
+        console.log("Hi");
+    }
+}
+person.sayHi();//"Hi"
+//等同于
+const person={
+    sayHi:function(){
+        console.log("Hi");
+    }
+}
+person.sayHi();
+
+// 2、对象的扩展运算符（...)用于取出参数对象所有可遍历属性然后拷贝到当前对象
+let child={name:"pol",age:15};
+let someone={...child}//取出child 对象里的所有可遍历属性，然后拷贝到someone 对象
+someone;//{name:"pol",age:15};
+
+//可用于合并两个对象
+let age={age:15};
+let name={name:"amy"};
+let applyPerson={...age,...name}
+applyPerson;//{age:"15",name:"amy"};
+
+
+//对象的新方法 assign(target,source_1,...) 用于将源对象的所有可枚举属性复制到目标对象中
+//如果目标对象和源对象有同名属性，或者多个源对象有同名属性，则后面的属性会覆盖前面的属性
+
+let target={a:1};
+let object2={b:2};
+let object3={c:3};
+Object.assign(target,object2,object3);
+target;//{a:1,b:2,c:3}
+
+//Object.is(value1,value2)
+//用来比较两个值是否相等 与==基本类似
+Object.is("q","q")//true
+Object.is(1,1);   //true
+Object.is([1],[1]); //false
+
+//与 ==的区别
+Object.is(+0,-0);//false
+//+0 == -0        //true
+
+Object.is(NaN,NaN)//true
+NaN===NaN  //false
+
+
+</script>

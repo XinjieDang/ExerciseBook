@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>async是ES7与异步操作的关键字</h3>
+    语法：async function name([parm[,...parm]]]){statements}
+    name：函数名称
+    pram:要传递给参数的参数名称
+    statements：函数体语句
+    
+</body>
+</html>
+<script>
+    //1、async 函数返回一个Promise 对象，可用then方法添加回调函数
+    async function helloAsync(){
+        return "hello async"
+    }
+    console.log(helloAsync()) //Promise {<fulfilled>: 'hello async'}
+    //可用then添加回调函数
+    helloAsync().then(value=>{
+        console.log(value)   //hello async
+    })
+    //2、async 函数执行，遇到await 就会暂停执行，等到触发的异步操作完成 后，恢复async函数的执行并返回解析值
+    //await  关键字仅在 async function 中有效，如果在async 函数体外使用 await   会得到一个语法错误
+
+
+    function testAwait(){
+        return new Promise(resovle=>{
+            setTimeout(()=>{
+                console.log('testAwait');
+                resolve();
+            },1000);
+        })
+    }
+    async function helloAsync(){
+        await testAwait();
+        console.log("hello Async")
+    }
+
+    helloAsync();
+    //先执行  await  的 testAwait()   => 'testAwait'
+    //后执行 helloAsync  console.log()  => 'hello Async'
+
+    //3、await 操作符用于等待一个Promise 对象，它只能在异步函数 async funciton 中使用
+
+    //如果一个Promise 对象被传递给一个await 操作符，await 将等待Promise 正常处理完成并返回其处理结果
+
+    function testAwait2(x){
+        return new Promise(resolve=>{
+            setTimeout(()=>{
+                resolve(x);
+            },2000)
+        })
+    }
+    async function helloAsync2(){
+        var x=await testAwait2("hello word")
+        console.log(x);
+    }
+
+    helloAysnc2();
+
+    //正常情况下，await 命令 后面是一个Promise对象，也可以跟其他值，如字符串，布尔值，数值和普通函数
+    //4、 await 针对不同的表达式的处理方式
+    // Promise 对象： await  会暂停执行，等待Promise 对象 resolve ，然后恢复await函数的执行并返回解析值
+    // 非Promise 对象：直接返回对应的值
+
+</script>

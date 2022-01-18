@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        Promise是异步编程的一种解决方案，Promise 是一个对象，从它可以获取异步操作消息
+    </h3>
+</body>
+</html>
+<script>
+    //1、Promise的状态分为3种
+    //pending 进行中，fulfilled 已成功，和已失败rejected，除了异步操作结果，其他任何操作都无法改变这个状态
+    // 状态改变：从pending变为fulfilled 进行-》已成功   从pending =>rejected 从进行变为已失败，只要处于fulfieled 和rejected 状态就不会改变
+
+    const p1=new Promise(function(resolve,rejected){
+        resolve('success1');
+        resolve('success2');
+    });
+    const p2=new Promise(function(resolve,rejected){
+        resolve('success3');
+        rejected('reject')
+    })
+    p1.then(function(value){
+        console.log(value)//success1
+    })
+    p2.then(function(value){
+        console.log(value)//success3
+    })
+
+    //2、状态的特点 无法取消Promise  一旦寄建立，无法中途取消
+    //不设置回调函数，Promise 内部抛出的错误，无法反应到外部
+
+    //3、 then 方法 接受两个函数作为参数，一个是执行成功时的回调，一个是执行失败时的回调，两个函数只有一个被调用，要么成功，要么失败
+    //  then方法特点：在JavaScript 事件队列当前运行完成之前，回调函数永远不会被调用
+
+
+    const p3=new Promise(function(resolve,reject){
+        resolve('success then的特点')
+    })
+    p3.then(function(value){
+        console.log(value)
+    })
+    console.log("先执行这个，再到Promise")
+
+
+    //4、通过.then形式添加的回调函数，不论什么时候，都会被调用，通过多次调用.then.
+    //可以添加对个回调函数，会按照插入的顺序并且独立运行
+
+    const p4=new Promise((resolve,reject)=>{
+        resolve(1)
+    }).then(value=>{      //第一个then    1
+        console.log(value);
+        return value*2;
+    }).then(value=>{     //第二个then     2
+        console.value(value)
+    }).then(value=>{    //第三then        undefined
+        console.log(value);
+        return Promise.resolve('resolve');
+    }).then(value=>{    //第四个 then       resolve
+        console.log(value)
+        return Promise.reject('reject')
+    }).then(value=>{   //第五个 then        reject:reject
+        console.log('reject'+value);
+
+    }
+    ,err=>{
+        console.log('reject'+err);
+        }
+    )
+    //then 方法 将返回一个resolve 或者reject 状态的Promise 对象用于链式调用，且Promise 对象的值就是这个返回值
+    //5、then 方法注意点
+    //简便的 Promise 链式编程 最好保持扁平化，不要嵌套Promise,总是返回或终止Promise 链
+
+    const p5=new Promise((resolve,reject)=>{
+        resolve(1);
+    }).then(result=>{
+        p4(result).then(newResult=>p3(newResult));
+
+    }).then(()=>p2())
+</script>
