@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  // 扩展运算符 将数组 转为逗号分隔的参数序列
+  const tfBoy = ['王源', '易烊千玺', '王俊凯']
+  //声明一个函数
+  function chunwan() {
+    console.log(arguments)
+  }
+  //与rest 很像,但是rest 是放在方法的参数上
+  chunwan(...tfBoy)
+</script>

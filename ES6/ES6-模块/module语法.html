@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<!-- 使用import 必须声明type为 module -->
+<script type="module">
+  //es6 模块不是对象，是通过export 命令显式指定输出的代码，再通过import 命令输入
+  //从fs 加载三个模块，其他方法不加载，这种称为编译时加载，ES6可以在编译时就完成加载
+  // import { star, exists, redFile } from 'fs'
+
+  //export 命令用于规定模块的对外接口，import 命令用于输入其他模块提供的功能，一个模块就是一个独立的文件，该文件内部的所有变量，外部无法获取；
+
+  import { firstName, lastName } from './profile.js'
+
+  console.log(firstName)
+
+  //rest 参数  用于获取参数的实现
+  function restMethod(...args) {
+    //args 会变成数组,rest 参数必须放到最后才有效
+    console.log(args)
+  }
+
+  restMethod('小米', '华为', '苹果')
+</script>

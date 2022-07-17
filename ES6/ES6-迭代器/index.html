@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  //迭代器  需要自定义遍历数据的时候，要相到迭代器
+  const xiyouji = ['唐僧', '猪八戒', '孙悟空']
+  //使用for ..of 遍历
+  for (let v of xiyouji) {
+    //V是键值
+    console.log(v)
+  }
+  console.log(xiyouji)
+
+  let iterator = xiyouji[Symbol.iterator]()
+  //调用对象next 方法
+  console.log(iterator.next())
+  console.log(iterator.next())
+  console.log(iterator.next())
+  console.log(iterator.next())
+
+  const banji = {
+    name: '终极一班',
+    stus: ['小米', '小红', '小爱'],
+  }
+  //遍历这个对象
+  for (let v of banji) {
+    console.log(v)
+  }
+</script>

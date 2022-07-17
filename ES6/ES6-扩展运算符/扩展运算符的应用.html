@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div></div>
+    <div></div>
+    <div></div>
+  </body>
+</html>
+<script>
+  // 1.数组的合并  ... 把数组展开,形成参数序列
+  const kuaizi = ['王体力', '熊阿姨', '网是南非']
+  const fenghaung = ['增益', '莲花']
+  //es5 的做法
+  //const newZUHE = kuaizi.concat(fenghaung)
+  //es6 的做法
+  const newZUHE = [...kuaizi, ...fenghaung]
+  console.log(newZUHE)
+  //2.数组克隆
+
+  //3、形参初始值
+  function add(a, b, c = 10) {
+    return a + b + c
+  }
+  add(10, 11)
+</script>
